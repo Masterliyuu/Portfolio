@@ -17,6 +17,7 @@
   --card:#FFFFFF;
 }
 
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -49,9 +50,19 @@ a{color:var(--brand)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:14px 0}
 .brand{display:flex;align-items:center;gap:.5rem;color:var(--text);text-decoration:none;font-weight:700}
 .brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand), var(--brand-2)); color:white}
-.nav-links{display:flex;align-items:center;gap:1rem}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;   /* prevent wrapping */
+  white-space: nowrap; /* keep each link on one line */
+}
+
 .nav-links a{color:var(--text);text-decoration:none;opacity:.9}
-.nav-links .btn{margin-left:.5rem}
+.nav-links .btn{
+  margin-left:.5rem
+  white-space: nowrap;
+}
 .menu-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:.3rem .5rem;color:var(--text)}
 
 .hero{padding:96px 0 48px}
