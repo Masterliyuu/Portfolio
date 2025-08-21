@@ -1,38 +1,30 @@
-// MAIN.JS – Handles theme + mobile menu
+// main.js
 
-// Theme Toggle
-const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light');
-    const isLight = document.documentElement.classList.contains('light');
-    themeToggle.setAttribute('aria-pressed', isLight);
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+  const themeToggle = document.getElementById("themeToggle");
+  const siteHeader = document.querySelector(".site-header");
 
-// Mobile Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.getElementById('nav-list');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', !expanded);
+  // --- Mobile nav toggle ---
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+    menuToggle.setAttribute("aria-expanded", isOpen);
   });
 
-  // Close nav on link click (mobile)
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', false);
-    });
+  // --- Theme toggle ---
+  themeToggle.addEventListener("click", () => {
+    document.documentElement.classList.toggle("light");
+    const isLight = document.documentElement.classList.contains("light");
+    themeToggle.setAttribute("aria-pressed", isLight);
   });
-}
 
-// Header shadow on scroll
-const header = document.querySelector('.site-header');
-if (header) {
-  window.addEventListener('scroll', () => {
-    header.dataset.elevate = window.scrollY > 10;
+  // --- Elevate header on scroll ---
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      siteHeader.setAttribute("data-elevate", "true");
+    } else {
+      siteHeader.setAttribute("data-elevate", "false");
+    }
   });
-}
+});
