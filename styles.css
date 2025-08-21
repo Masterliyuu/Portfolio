@@ -329,56 +329,23 @@ input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(1
   .menu-toggle{display:inline-block}
 }
 
-/* Sticky CTA */
-.sticky-cta {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--brand);
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: opacity 0.3s ease;
-}
-
+/* Sticky CTA overrides */
 .sticky-cta .btn {
-  background: linear-gradient(135deg, var(--brand), var(--brand-2));
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
-  cursor: pointer;
-  animation: pulse 2s infinite; /* glowing pulse */
-  transform: none !important;   /* disable scaling */
+  transform: none !important;        /* no hover scaling */
+  animation: pulse 2s infinite;      /* keep glowing pulse */
+  position: relative;
+  overflow: visible;                 /* prevent ripple clipping */
 }
 
-/* Hide button when dismissed */
-.sticky-cta.hidden {
-  opacity: 0;
-  pointer-events: none;
+.sticky-cta .btn:hover {
+  transform: none !important;        /* no scale on hover */
 }
 
-/* Close button */
-.sticky-cta .close-cta {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-left: 0.3rem;
-  opacity: 0.8;
+.sticky-cta .btn::after {
+  display: none !important;          /* disable ripple effect */
 }
 
-.sticky-cta .close-cta:hover {
-  opacity: 1;
-}
-
-/* Pulse animation */
+/* Pulse animation (already defined, but kept here for clarity) */
 @keyframes pulse {
   0%   { box-shadow: 0 0 0 0 rgba(18,160,98, 0.7); }
   70%  { box-shadow: 0 0 0 12px rgba(18,160,98, 0); }
