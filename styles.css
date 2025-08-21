@@ -335,13 +335,33 @@ input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(1
   bottom: 20px;
   right: 20px;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--card);
+  padding: .5rem .7rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
+/* Call button inside */
 .sticky-cta .btn {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   border-radius: 999px;
   font-weight: 600;
   animation: pulse 2s infinite;
+}
+
+/* Close button */
+.cta-close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.cta-close:hover {
+  color: var(--brand-2);
 }
 
 /* Pulse animation for attention */
@@ -351,7 +371,7 @@ input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(1
   100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(18,160,98, 0); }
 }
 
-/* Responsive: smaller screens */
+/* Responsive */
 @media (max-width: 680px) {
   .sticky-cta {
     bottom: 15px;
@@ -362,3 +382,4 @@ input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(1
     font-size: .95rem;
   }
 }
+
