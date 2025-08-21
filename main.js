@@ -120,3 +120,16 @@ const observer = new IntersectionObserver(entries => {
 sections.forEach(section => {
   observer.observe(section);
 });
+
+// --- Sticky CTA Close ---
+document.addEventListener("DOMContentLoaded", () => {
+  const cta = document.getElementById("stickyCta");
+  const closeBtn = document.getElementById("ctaClose");
+
+  if (cta && closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      cta.style.display = "none";
+    });
+  }
+});
+
