@@ -122,14 +122,11 @@ sections.forEach(section => {
 });
 
 // --- Sticky CTA Close ---
-document.addEventListener("DOMContentLoaded", () => {
-  const cta = document.getElementById("stickyCta");
-  const closeBtn = document.getElementById("ctaClose");
-
-  if (cta && closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      cta.style.display = "none";
-    });
-  }
-});
+const sticky = document.querySelector('.sticky-cta');
+  const closeBtn = sticky?.querySelector('.close-cta');
+  if (localStorage.getItem('hideStickyCTA') === '1') sticky?.classList.add('hidden');
+  closeBtn?.addEventListener('click', () => {
+    sticky.classList.add('hidden');
+    localStorage.setItem('hideStickyCTA','1');
+  }););
 
