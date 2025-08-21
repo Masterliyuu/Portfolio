@@ -27,6 +27,60 @@ document.addEventListener("DOMContentLoaded", () => {
       siteHeader.setAttribute("data-elevate", "false");
     }
   });
+
+  // --- Button Ripple Effect ---
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      const circle = document.createElement("span");
+      const diameter = Math.max(this.clientWidth, this.clientHeight);
+      const radius = diameter / 2;
+
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${e.clientX - this.offsetLeft - radius}px`;
+      circle.style.top = `${e.clientY - this.offsetTop - radius}px`;
+      circle.classList.add("ripple");
+
+      // Remove any old ripple
+      const ripple = this.querySelector(".ripple");
+      if (ripple) {
+        ripple.remove();
+      }
+
+      this.appendChild(circle);
+
+      // auto-remove ripple after animation
+      setTimeout(() => circle.remove(), 600);
+    });
+  });
+
+  // --- Testimonial Carousel ---
+  const track = document.querySelector(".testimonial-track");
+  const slides = document.querySelectorAll(".testimonial");
+  const buttons = document.querySelectorAll(".carousel-btn");
+  let currentIndex = 0;
+
+  function updateCarousel(index) {
+    if (!track) return; // no carousel present
+    track.style.transform = `translateX(-${index * 100}%)`;
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle("active", i === index);
+    });
+  }
+
+  buttons.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      currentIndex = i;
+      updateCarousel(currentIndex);
+    });
+  });
+
+  // Auto-cycle every 6s
+  if (track) {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel(currentIndex);
+    }, 6000);
+  }
 });
 
 // --- Blog Modal Logic ---
@@ -66,4 +120,3 @@ const observer = new IntersectionObserver(entries => {
 sections.forEach(section => {
   observer.observe(section);
 });
-
