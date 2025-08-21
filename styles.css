@@ -329,75 +329,53 @@ input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(1
   .menu-toggle{display:inline-block}
 }
 
-/* Sticky CTA container */
-.sticky-cta {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 2000;
+/* --- STICKY CTA: harden floating + kill scale-on-click --- */
+.sticky-cta{
+  position: fixed !important;
+  inset: auto 20px calc(20px + env(safe-area-inset-bottom))  auto;
+  z-index: 9999;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: .5rem;
   background: linear-gradient(135deg, var(--brand), var(--brand-2));
   color: #fff;
-  padding: 0.6rem 1.2rem;
+  padding: .6rem 1.1rem;
   border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: opacity 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: auto;
+  will-change: opacity, transform;
 }
 
-/* Hide when dismissed */
-.sticky-cta.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(20px);
+/* hide state */
+.sticky-cta.hidden{ opacity:.0; transform: translateY(16px); pointer-events:none }
+
+/* keep the button “alive” but never scale/shift */
+.sticky-cta .btn,
+.sticky-cta .btn:hover,
+.sticky-cta .btn:active,
+.sticky-cta .btn:focus{
+  background: transparent;
+  color:#fff;
+  border:0;
+  padding:.4rem .8rem;
+  font-weight:600;
+  transform:none !important;        /* defeats any global :hover/:active transforms */
+  transition: box-shadow .2s ease, opacity .2s ease; /* not transform */
+  animation: pulse 2s infinite;     /* your subtle glow */
 }
 
-/* CTA Button (keep steady, glowing pulse) */
-.sticky-cta .btn {
-  background: none;
-  color: #fff;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  font-weight: 600;
-  transform: none !important;
-  animation: pulse 2s infinite;
-  position: relative;
-}
+/* nuke ripple in this scope */
+.sticky-cta .btn::after{ content:none !important }
 
-/* No ripple effect here */
-.sticky-cta .btn::after {
-  display: none !important;
+/* tidy close button */
+.sticky-cta .close-cta{
+  width:22px;height:22px;border-radius:50%;
+  display:inline-grid;place-items:center;
+  border:0;cursor:pointer;
+  background: rgba(255,255,255,.15);
+  color:#fff;font-size:.9rem;line-height:1;
+  transition: background .2s ease, transform .2s ease;
 }
-
-/* Close button – refined look */
-.sticky-cta .close-cta {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-
-.sticky-cta .close-cta:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.1) rotate(90deg);
-}
-
-/* Pulse animation (glowing effect) */
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(18,160,98, 0.7); }
-  70%  { box-shadow: 0 0 0 10px rgba(18,160,98, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(18,160,98, 0); }
-}
+.sticky-cta .close-cta:hover{ background:rgba(255,255,255,.35); transform: scale(1.05) }
 
