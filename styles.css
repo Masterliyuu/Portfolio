@@ -328,3 +328,37 @@ input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 3px rgba(1
   .nav-links{display:none;position:absolute;right:4%;top:60px;background:var(--surface);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.6rem;flex-direction:column;min-width:220px}
   .menu-toggle{display:inline-block}
 }
+
+/* Sticky CTA */
+.sticky-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.sticky-cta .btn {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+/* Pulse animation for attention */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(18,160,98, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(18,160,98, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(18,160,98, 0); }
+}
+
+/* Responsive: smaller screens */
+@media (max-width: 680px) {
+  .sticky-cta {
+    bottom: 15px;
+    right: 15px;
+  }
+  .sticky-cta .btn {
+    padding: .7rem 1rem;
+    font-size: .95rem;
+  }
+}
