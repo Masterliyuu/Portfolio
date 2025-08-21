@@ -40,3 +40,17 @@ form?.addEventListener('submit', (e) => {
     alert('Please enter a valid email.');
   }
 });
+
+// Dark/Light toggle
+const themeToggle = document.getElementById("themeToggle");
+const root = document.documentElement;
+themeToggle.addEventListener("click", () => {
+  root.classList.toggle("light");
+});
+
+// Simple form handler (you can hook EmailJS or Netlify later)
+document.querySelector(".form")?.addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Thanks! Your message has been sent.");
+});
+
