@@ -28,3 +28,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// --- Blog Modal Logic ---
+const readMoreBtns = document.querySelectorAll(".read-more");
+const modals = document.querySelectorAll(".modal");
+const closes = document.querySelectorAll(".close");
+
+readMoreBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const articleId = btn.getAttribute("data-article");
+    document.getElementById("article" + articleId).style.display = "block";
+  });
+});
+
+closes.forEach(close => {
+  close.addEventListener("click", () => {
+    modals.forEach(m => m.style.display = "none");
+  });
+});
+
+window.addEventListener("click", e => {
+  if (e.target.classList.contains("modal")) {
+    e.target.style.display = "none";
+  }
+});
+
+// --- Scroll Reveal Animations ---
+const sections = document.querySelectorAll(".section");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.2 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+
