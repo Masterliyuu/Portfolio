@@ -64,37 +64,69 @@
   50% { border-color: transparent }
 }
 
-/* --- Testimonial Carousel --- */
+/* ================================
+   Testimonials Carousel
+================================ */
 .testimonial-carousel {
   position: relative;
   overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
 .testimonial-track {
   display: flex;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s ease-in-out;
 }
+
 .testimonial {
-  min-width: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
+  flex: 0 0 100%;
+  background: var(--card);
+  border-left: 4px solid var(--brand);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 0 0.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  font-style: italic;
 }
-.carousel-controls {
+
+.testimonial footer {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: normal;
+}
+
+/* Carousel nav dots */
+.carousel-nav {
   display: flex;
   justify-content: center;
-  gap: .6rem;
+  gap: 0.6rem;
   margin-top: 1rem;
 }
+
 .carousel-btn {
-  width: 12px; height: 12px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: var(--muted);
   border: none;
+  background: var(--muted);
+  opacity: 0.5;
   cursor: pointer;
-  transition: background .3s ease;
+  transition: opacity 0.3s ease, transform 0.2s ease;
 }
+
+.carousel-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
 .carousel-btn.active {
-  background: var(--brand);
+  background: var(--brand-2);
+  opacity: 1;
 }
+
 
 /* Blog Modals */
 .modal {
