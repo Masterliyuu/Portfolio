@@ -19,13 +19,34 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="styles.css" />
   <script defer src="main.js"></script>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Leo Lingel T. Pañares",
+    "jobTitle": "Executive & Project Management Virtual Assistant",
+    "image": "assets/profile.jpg",
+    "url": "",
+    "sameAs": [
+      "https://www.linkedin.com/",
+      "https://github.com/",
+      "https://x.com/"
+    ],
+    "knowsAbout": ["Executive Support", "Project Management", "Training Enablement", "Creative Content"],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Consolatrix College of Toledo City"
+    }
+  }
+  </script>
+
+  <!-- Google Analytics Placeholder -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'GA_MEASUREMENT_ID');
   </script>
 </head>
 <body>
@@ -37,7 +58,6 @@
         <span class="brand-text">Leo&nbsp;Pañares</span>
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="nav-list">
-        <span class="sr-only">Open menu</span>
         ☰
       </button>
       <nav class="nav-links" id="nav-list" aria-label="Primary">
@@ -47,6 +67,7 @@
         <a href="#achievements">Achievements</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#blog">Blog</a>
+        <a href="assets/Leo_Pañares_Resume.pdf" class="btn btn-outline" download>📄 Download Resume</a>
         <a href="#contact" class="btn btn-primary">Book a Call</a>
         <button id="themeToggle" class="btn btn-ghost" aria-pressed="false" title="Toggle dark mode">🌓</button>
       </nav>
@@ -66,7 +87,6 @@
           <div class="cta-row">
             <a href="#contact" class="btn btn-primary">Schedule a Discovery Call</a>
             <a href="#services" class="btn btn-outline">View Services</a>
-            <a href="assets/Leo-Panares-Resume.pdf" class="btn btn-ghost" download>📄 Download Resume</a>
           </div>
           <ul class="cred-list">
             <li>8+ years in executive support, ops & training</li>
@@ -80,21 +100,13 @@
       </div>
     </section>
 
-    <!-- TRUST / TOOLING -->
+    <!-- Tools -->
     <section class="section strip">
       <div class="container">
         <p class="strip-title">Tools I Work With</p>
         <ul class="tool-rail" aria-label="Tool logos">
-          <li>Google Workspace</li>
-          <li>Microsoft Office</li>
-          <li>Zoom</li>
-          <li>Trello</li>
-          <li>Asana</li>
-          <li>ClickUp</li>
-          <li>Canva</li>
-          <li>Adobe Creative Suite</li>
-          <li>CapCut</li>
-          <li>LMS Platforms</li>
+          <li>Google Workspace</li><li>Microsoft Office</li><li>Zoom</li><li>Trello</li><li>Asana</li>
+          <li>ClickUp</li><li>Canva</li><li>Adobe Creative Suite</li><li>CapCut</li><li>LMS Platforms</li>
         </ul>
       </div>
     </section>
@@ -179,28 +191,27 @@
       </div>
     </section>
 
-    <!-- BLOG -->
+    <!-- Blog -->
     <section id="blog" class="section">
       <div class="container">
         <header class="section-header">
           <h2>Insights & Tips</h2>
-          <p>Actionable strategies and lessons from my experience as a Virtual Assistant.</p>
+          <p>Practical advice for executives and entrepreneurs working with a VA.</p>
         </header>
-
         <div class="grid cards">
           <article class="card">
-            <h3>5 Ways a VA Saves Executives 10+ Hours/Week</h3>
-            <p>From inbox triage to calendar optimization—here’s how I create time for high-level work.</p>
+            <h3>5 Ways a VA Saves Execs 10+ Hours Weekly</h3>
+            <p>Learn how delegation of admin and project work can free up your focus time.</p>
             <a href="#" class="btn btn-outline">Read More</a>
           </article>
           <article class="card">
-            <h3>Streamlining Projects with Asana & Trello</h3>
-            <p>How I use project boards to keep teams aligned and deadlines realistic.</p>
+            <h3>My Top 5 Project Management Tools</h3>
+            <p>A breakdown of Trello, Asana, ClickUp, and when to use each one.</p>
             <a href="#" class="btn btn-outline">Read More</a>
           </article>
           <article class="card">
-            <h3>Turning Training into Real Impact</h3>
-            <p>Designing workshops that stick by focusing on outcomes, not slides.</p>
+            <h3>Virtual Onboarding Checklist</h3>
+            <p>Make onboarding a new hire seamless and stress-free with this framework.</p>
             <a href="#" class="btn btn-outline">Read More</a>
           </article>
         </div>
@@ -231,10 +242,8 @@
         <p>Executive & Project Management Virtual Assistant</p>
       </div>
       <nav aria-label="Footer">
-        <a href="#services">Services</a>
-        <a href="#work">Case Studies</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#services">Services</a><a href="#work">Case Studies</a>
+        <a href="#about">About</a><a href="#contact">Contact</a>
       </nav>
       <div class="small">© 2025 — All rights reserved.</div>
     </div>
