@@ -123,10 +123,15 @@ sections.forEach(section => {
 
 // --- Sticky CTA Close ---
 const sticky = document.querySelector('.sticky-cta');
-  const closeBtn = sticky?.querySelector('.close-cta');
-  if (localStorage.getItem('hideStickyCTA') === '1') sticky?.classList.add('hidden');
-  closeBtn?.addEventListener('click', () => {
-    sticky.classList.add('hidden');
-    localStorage.setItem('hideStickyCTA','1');
-  }););
+const closeBtn = sticky?.querySelector('.close-cta');
+
+if (localStorage.getItem('hideStickyCTA') === '1') {
+  sticky?.classList.add('hidden');
+}
+
+closeBtn?.addEventListener('click', () => {
+  sticky.classList.add('hidden');
+  localStorage.setItem('hideStickyCTA','1');
+});
+
 
