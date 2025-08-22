@@ -58,6 +58,24 @@
 .btn-ghost { background: transparent; border-color: rgba(255,255,255,.2); }
 .btn:hover { transform: translateY(-2px); }
 
+/* Add ripple effect styling for .btn .ripple */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  background: var(--ripple);
+  opacity: 0.5;
+  animation: ripple-animation 0.6s linear;
+  z-index: 2;
+}
+@keyframes ripple-animation {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
 /* --- Hero Typewriter --- */
 .hero-copy h1 {
   display: inline-block;
@@ -217,9 +235,7 @@ input:focus, textarea:focus { border-color: var(--ring); box-shadow: 0 0 0 3px r
   .menu-toggle { display: inline-block; }
 }
 
-/* ================================
-   STICKY CTA
-================================ */
+/* STICKY - CTA */
 .sticky-cta {
   position: fixed !important;
   inset: auto 20px calc(20px + env(safe-area-inset-bottom)) auto;
@@ -235,6 +251,7 @@ input:focus, textarea:focus { border-color: var(--ring); box-shadow: 0 0 0 3px r
   transition: opacity .25s ease, transform .25s ease;
   pointer-events: auto;
 }
+
 .sticky-cta.hidden { opacity: 0; transform: translateY(16px); pointer-events: none; }
 .sticky-cta .btn, .sticky-cta .btn:hover, .sticky-cta .btn:active, .sticky-cta .btn:focus {
   background: transparent; color: #fff; border: 0; padding: .4rem .8rem; font-weight: 600; transform: none !important; transition: box-shadow .2s ease, opacity .2s ease; animation: pulse 2s infinite;
