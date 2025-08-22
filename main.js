@@ -1,6 +1,10 @@
 // ===============================
-// main.js — Updated Version with Ripple Fix and Sticky CTA
+// main.js — Fully Fixed Version
 // ===============================
+
+// Always show sticky CTA for debugging (remove after confirming it is working)
+localStorage.removeItem("hideStickyCTA");
+
 document.addEventListener("DOMContentLoaded", () => {
   // --- Mobile Nav Toggle ---
   const menuToggle = document.querySelector(".menu-toggle");
@@ -68,25 +72,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000);
   }
 
-  // --- Blog Modal Logic ---
+  // --- Blog Modal Logic (fixed with .active class) ---
   const readMoreBtns = document.querySelectorAll(".read-more");
   const modals = document.querySelectorAll(".modal");
   const closes = document.querySelectorAll(".close");
+
   readMoreBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modals.forEach((m) => m.classList.remove("active"));
       const articleId = btn.getAttribute("data-article");
-      document.getElementById("article" + articleId).style.display = "block";
+      const modal = document.getElementById("article" + articleId);
+      if (modal) {
+        modal.classList.add("active");
+        document.body.classList.add("modal-open");
+      }
     });
   });
   closes.forEach((close) => {
     close.addEventListener("click", () => {
-      modals.forEach((m) => (m.style.display = "none"));
+      modals.forEach((m) => m.classList.remove("active"));
+      document.body.classList.remove("modal-open");
     });
   });
-  window.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal")) {
-      e.target.style.display = "none";
-    }
+  modals.forEach((modal) => {
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-open");
+      }
+    });
   });
 
   // --- Scroll Reveal Animations ---
@@ -107,8 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Sticky CTA Close ---
   const sticky = document.querySelector(".sticky-cta");
   const closeBtn = sticky?.querySelector(".close-cta");
-  // For debugging: Clear the localStorage flag if you want to always show the sticky CTA
-  // localStorage.removeItem("hideStickyCTA");
   if (localStorage.getItem("hideStickyCTA") === "1") {
     sticky?.classList.add("hidden");
   }
