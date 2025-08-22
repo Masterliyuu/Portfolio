@@ -1,12 +1,10 @@
 // ===============================
-// main.js — Final Sanitized Version
+// main.js — Sanitized Version
 // ===============================
-
 document.addEventListener("DOMContentLoaded", () => {
   // --- Mobile Nav Toggle ---
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
-
   menuToggle?.addEventListener("click", () => {
     const isOpen = navLinks?.classList.toggle("active");
     menuToggle.setAttribute("aria-expanded", isOpen);
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Button Ripple Effect (exclude sticky CTA) ---
   document.querySelectorAll(".btn").forEach((btn) => {
-    if (btn.closest(".sticky-cta")) return; // skip sticky CTA
+    if (btn.closest(".sticky-cta")) return;
     btn.addEventListener("click", function (e) {
       const circle = document.createElement("span");
       const rect = this.getBoundingClientRect();
@@ -52,20 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".testimonial-track");
   const dots = document.querySelectorAll(".carousel-btn");
   let currentIndex = 0;
-
   function showSlide(index) {
     if (!track) return;
     track.style.transform = `translateX(-${index * 100}%)`;
     dots.forEach((d, i) => d.classList.toggle("active", i === index));
   }
-
   dots.forEach((dot, i) => {
     dot.addEventListener("click", () => {
       currentIndex = i;
       showSlide(currentIndex);
     });
   });
-
   if (track && dots.length) {
     setInterval(() => {
       currentIndex = (currentIndex + 1) % dots.length;
@@ -77,20 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const readMoreBtns = document.querySelectorAll(".read-more");
   const modals = document.querySelectorAll(".modal");
   const closes = document.querySelectorAll(".close");
-
   readMoreBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const articleId = btn.getAttribute("data-article");
       document.getElementById("article" + articleId).style.display = "block";
     });
   });
-
   closes.forEach((close) => {
     close.addEventListener("click", () => {
       modals.forEach((m) => (m.style.display = "none"));
     });
   });
-
   window.addEventListener("click", (e) => {
     if (e.target.classList.contains("modal")) {
       e.target.style.display = "none";
@@ -110,17 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { threshold: 0.2 }
   );
-
   sections.forEach((section) => observer.observe(section));
 
   // --- Sticky CTA Close ---
   const sticky = document.querySelector(".sticky-cta");
   const closeBtn = sticky?.querySelector(".close-cta");
-
   if (localStorage.getItem("hideStickyCTA") === "1") {
     sticky?.classList.add("hidden");
   }
-
   closeBtn?.addEventListener("click", () => {
     sticky?.classList.add("hidden");
     localStorage.setItem("hideStickyCTA", "1");
