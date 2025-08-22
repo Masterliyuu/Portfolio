@@ -1,5 +1,5 @@
 // ===============================
-// main.js — Sanitized Version
+// main.js — Updated Version with Ripple Fix and Sticky CTA
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
   // --- Mobile Nav Toggle ---
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btn.closest(".sticky-cta")) return;
     btn.addEventListener("click", function (e) {
       const circle = document.createElement("span");
+      circle.className = "ripple";
       const rect = this.getBoundingClientRect();
       const size = Math.max(rect.width, rect.height);
       const x = e.clientX - rect.left - size / 2;
@@ -40,9 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
       circle.style.width = circle.style.height = `${size}px`;
       circle.style.left = `${x}px`;
       circle.style.top = `${y}px`;
-      circle.classList.add("ripple");
       this.appendChild(circle);
-      setTimeout(() => circle.remove(), 600);
+      circle.addEventListener("animationend", () => circle.remove());
     });
   });
 
@@ -107,6 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Sticky CTA Close ---
   const sticky = document.querySelector(".sticky-cta");
   const closeBtn = sticky?.querySelector(".close-cta");
+  // For debugging: Clear the localStorage flag if you want to always show the sticky CTA
+  // localStorage.removeItem("hideStickyCTA");
   if (localStorage.getItem("hideStickyCTA") === "1") {
     sticky?.classList.add("hidden");
   }
