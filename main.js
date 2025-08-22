@@ -130,3 +130,20 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("hideStickyCTA", "1");
   });
 });
+
+// --- Before/After Slider ---
+document.querySelectorAll('.before-after-slider').forEach(slider => {
+  const beforeImg = slider.querySelector('.slider-img.before');
+  const afterImg = slider.querySelector('.slider-img.after');
+  const range = slider.querySelector('.slider-range');
+  if (beforeImg && afterImg && range) {
+    range.addEventListener('input', () => {
+      const val = range.value;
+      afterImg.style.clipPath = `inset(0 0 0 ${100 - val}%)`;
+      beforeImg.style.opacity = `${(100 - val) / 100}`;
+    });
+    // Initialize
+    afterImg.style.clipPath = `inset(0 0 0 50%)`;
+    beforeImg.style.opacity = `0.5`;
+  }
+});
