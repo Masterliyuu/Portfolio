@@ -490,3 +490,6 @@ body.modal-open {
     min-height: 38px;
   }
 }
+.tools-strip {
+  overflow: visible !important;
+}
