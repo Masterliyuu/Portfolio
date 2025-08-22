@@ -235,11 +235,12 @@ input:focus, textarea:focus { border-color: var(--ring); box-shadow: 0 0 0 3px r
   .menu-toggle { display: inline-block; }
 }
 
-/* STICKY - CTA */
+/* Sticky CTA fix: always visible unless .hidden */
 .sticky-cta {
   position: fixed !important;
-  inset: auto 20px calc(20px + env(safe-area-inset-bottom)) auto;
-  z-index: 9999;
+  right: 20px;
+  bottom: 24px;
+  z-index: 3000;
   display: flex;
   align-items: center;
   gap: .5rem;
@@ -251,7 +252,6 @@ input:focus, textarea:focus { border-color: var(--ring); box-shadow: 0 0 0 3px r
   transition: opacity .25s ease, transform .25s ease;
   pointer-events: auto;
 }
-
 .sticky-cta.hidden { opacity: 0; transform: translateY(16px); pointer-events: none; }
 .sticky-cta .btn, .sticky-cta .btn:hover, .sticky-cta .btn:active, .sticky-cta .btn:focus {
   background: transparent; color: #fff; border: 0; padding: .4rem .8rem; font-weight: 600; transform: none !important; transition: box-shadow .2s ease, opacity .2s ease; animation: pulse 2s infinite;
@@ -264,3 +264,58 @@ input:focus, textarea:focus { border-color: var(--ring); box-shadow: 0 0 0 3px r
 }
 .sticky-cta .close-cta:hover { background: rgba(255,255,255,.35); transform: scale(1.05); }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(18,160,98, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(18,160,98, 0); } 100% { box-shadow: 0 0 0 0 rgba(18,160,98, 0); } }
+
+/* Ripple effect for .btn */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  background: var(--ripple, rgba(255,255,255,0.35));
+  opacity: 0.5;
+  animation: ripple-animation 0.6s linear;
+  z-index: 2;
+}
+@keyframes ripple-animation {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* MODAL OVERLAY (Blog popups) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  overflow: auto;
+  background: rgba(0,0,0,0.55);
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal.active { display: block; }
+.modal-content {
+  background: var(--surface, #fff);
+  margin: 7vh auto 0 auto;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+  animation: modalIn 0.3s;
+}
+@keyframes modalIn { from { scale: 0.94; opacity: 0; } to { scale: 1; opacity: 1; } }
+.close {
+  position: absolute;
+  right: 1.1rem; top: 1.1rem; font-size: 1.2rem; cursor: pointer;
+  color: var(--muted, #777);
+  transition: color 0.18s;
+  z-index: 2;
+}
+.close:hover { color: var(--brand, #1E7F4F); }
+
+body.modal-open {
+  overflow: hidden !important;
+}
