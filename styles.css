@@ -45,7 +45,7 @@ a:hover { text-decoration: underline; }
 .container { width: min(1100px, 92%); margin-inline: auto; }
 .section { padding: 64px 0; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .section.visible { opacity: 1; transform: translateY(0); }
-.section.alt { background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); }
+.section.alt { background: linear-gradient(180deg, var(--surface) 0%, rgba(14, 18, 14, 0.9) 100%); }
 .section-header { max-width: 760px; margin: 0 auto 2rem; text-align: center; }
 .section-header p { color: var(--muted); }
 
@@ -115,8 +115,14 @@ a:hover { text-decoration: underline; }
 /* ================================
    ABOUT
 ================================ */
+#about { background: linear-gradient(135deg, var(--surface), rgba(30, 127, 79, 0.1)); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .about-text p { max-width: 80ch; }
+.stats { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.5rem; }
+.stat { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; transition: transform 0.3s ease, background 0.3s ease; }
+.stat:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.1); }
+.num { font-size: 2rem; font-weight: 700; color: var(--brand-2); margin-bottom: 0.5rem; }
+.label { font-size: 1rem; color: var(--muted); }
 
 /* ================================
    TESTIMONIALS CAROUSEL
@@ -229,6 +235,6 @@ a:hover { text-decoration: underline; }
 
 /* REMINDER: What to Change */
 /* 1. Fonts: Ensure Montserrat and Playfair Display fonts load via Google Fonts link in index.html. */
-/* 2. Colors: Adjust --highlight (#FF6F61) in :root (line 10) if you prefer a different accent color for CTAs and errors. */
-/* 3. Animations: Test card hover scaling (lines 94, 129) and section animations (line 37) to ensure smooth performance. Adjust transition durations if needed. */
-/* 4. Form Styling: Verify the select dropdown arrow (line 159) displays correctly across browsers. */
+/* 2. Colors: Adjust the --brand-2 color (used for counters) in :root (line 10) if you want a different highlight shade. */
+/* 3. Gradient: Test the about section gradient (line 108) to ensure it complements your theme. Adjust rgba values if needed. */
+/* 4. Responsiveness: Verify the stats grid stacks properly on mobile (line 211) using Chrome DevTools. */
