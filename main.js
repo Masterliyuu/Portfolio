@@ -93,11 +93,20 @@ startCarousel();
 const modalButtons = document.querySelectorAll("[data-modal]");
 const modals = document.querySelectorAll(".modal");
 const closeButtons = document.querySelectorAll(".close");
+const readMoreButtons = document.querySelectorAll(".read-more");
 
 modalButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const modalId = btn.dataset.modal;
     const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = "block";
+  });
+});
+
+readMoreButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const articleId = btn.dataset.article;
+    const modal = document.getElementById(`article${articleId}`);
     if (modal) modal.style.display = "block";
   });
 });
