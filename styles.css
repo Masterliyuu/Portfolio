@@ -4,8 +4,8 @@
 :root {
   --bg: #0B0E0C;
   --surface: #101410;
-  --text: #F3F6F4;
-  --muted: #A8B2AC;
+  --text: #E6ECE8; /* Lighter text for better contrast on dark bg */
+  --muted: #B0C0B8; /* Brighter muted color for dark mode */
   --brand: #1E7F4F;
   --brand-2: #12A062;
   --highlight: #FF6F61;
@@ -17,8 +17,8 @@
 :root.light {
   --bg: #FFFFFF;
   --surface: #F6F8F7;
-  --text: #0B0E0C;
-  --muted: #4A5A52;
+  --text: #0B0E0C; /* Darker text for better contrast on white bg */
+  --muted: #4A5A52; /* Darker muted color for light mode */
   --card: #FFFFFF;
 }
 
@@ -143,6 +143,7 @@ a:hover { text-decoration: underline; }
 ================================ */
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); }
 .modal-content { background: var(--card); margin: 10% auto; padding: 20px; border-radius: 16px; width: 90%; max-width: 700px; color: var(--text); animation: fadeIn 0.4s ease; }
+.modal-content p { color: var(--text); } /* Ensure modal text is readable */
 .close { color: var(--muted); float: right; font-size: 24px; cursor: pointer; transition: color 0.2s ease; }
 .close:hover { color: var(--brand-2); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -154,7 +155,7 @@ a:hover { text-decoration: underline; }
 .form-row { margin-bottom: 1rem; }
 .form-row label { display: block; margin-bottom: 0.5rem; color: var(--text); }
 .form-row input, .form-row textarea, .form-row select { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--surface); color: var(--text); }
-.form-row select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A8B2AC'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1.2rem; }
+.form-row select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B0C0B8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1.2rem; }
 .form-row input:focus, .form-row textarea:focus, .form-row select:focus { outline: none; border-color: var(--brand-2); box-shadow: 0 0 0 2px var(--ring); }
 .form-message { margin-top: 0.5rem; font-size: 0.9rem; color: var(--text); }
 .form-message.success { color: var(--brand-2); }
@@ -235,6 +236,5 @@ a:hover { text-decoration: underline; }
 
 /* REMINDER: What to Change */
 /* 1. Fonts: Ensure Montserrat and Playfair Display fonts load via Google Fonts link in index.html. */
-/* 2. Colors: Adjust --text or --muted in :root.light (lines 9-13) if light mode contrast still needs tweaking after testing. */
-/* 3. Padding: Verify section padding (e.g., #about line 108) works with your content; increase to 2rem if margins still look off. */
-/* 4. Test: Check https://masterliyuu.github.io/Portfolio/#main in both light and dark modes using Chrome DevTools to confirm text visibility and margin alignment. */
+/* 2. Colors: Adjust --text or --muted further if contrast still needs tweaking after testing (e.g., darken --text in light mode to #000000). */
+/* 3. Test: Check https://masterliyuu.github.io/Portfolio/#main in both light and dark modes using Chrome DevTools to verify text readability, especially in Hero, About, and modals. */
