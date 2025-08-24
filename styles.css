@@ -167,6 +167,42 @@ a{color:var(--brand)}
 .small{color:var(--muted)}
 
 /* ================================
+   Tools I Use (Icon Styling)
+================================ */
+.tool-rail li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: default;
+  transition: color 0.3s ease;
+}
+
+/* icons default: monochrome */
+.tool-rail i {
+  font-size: 1.4rem;
+  filter: grayscale(100%) brightness(0) invert(1); /* white icons for dark */
+  transition: filter 0.4s ease;
+}
+
+/* Light mode adjustment (black icons) */
+:root.light .tool-rail i {
+  filter: grayscale(100%) brightness(0); /* black icons in light theme */
+}
+
+/* hover → show true color */
+.tool-rail li:hover i {
+  filter: none;
+}
+
+/* subtle hover text highlight */
+.tool-rail li:hover {
+  color: var(--brand-2);
+}
+
+
+/* ================================
    RESPONSIVE
 ================================ */
 @media(max-width:960px){
