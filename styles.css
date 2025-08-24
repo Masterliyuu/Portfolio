@@ -166,37 +166,41 @@ a{color:var(--brand)}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;align-items:start}
 .small{color:var(--muted)}
 
-/* ================================
-   Tools I Use (Icon Styling)
-================================ */
+/* =========================
+   Tools I Use (Better)
+========================= */
+.tool-rail {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
 .tool-rail li {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   font-weight: 500;
-  color: var(--text);
-  cursor: default;
+  color: var(--muted);
   transition: color 0.3s ease;
 }
 
-/* icons default: monochrome */
+/* Neutral gray icons by default */
 .tool-rail i {
-  font-size: 1.4rem;
-  filter: grayscale(100%) brightness(0) invert(1); /* white icons for dark */
-  transition: filter 0.4s ease;
+  font-size: 2rem;
+  filter: grayscale(100%) brightness(70%);
+  transition: filter 0.3s ease, transform 0.2s ease;
 }
 
-/* Light mode adjustment (black icons) */
-:root.light .tool-rail i {
-  filter: grayscale(100%) brightness(0); /* black icons in light theme */
-}
-
-/* hover → show true color */
+/* Hover: reveal brand colors */
 .tool-rail li:hover i {
   filter: none;
+  transform: scale(1.1);
 }
 
-/* subtle hover text highlight */
 .tool-rail li:hover {
   color: var(--brand-2);
 }
