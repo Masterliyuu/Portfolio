@@ -190,8 +190,39 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 sections.forEach(section => observer.observe(section));
 
+/* ============================
+   Counter Animation
+============================ */
+const counters = document.querySelectorAll("[data-counter]");
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = entry.target;
+      const targetValue = parseInt(target.getAttribute("data-counter"));
+      let currentValue = 0;
+      const duration = 2000; // 2 seconds
+      const increment = targetValue / (duration / 16); // ~60fps
+
+      const updateCounter = () => {
+        currentValue += increment;
+        if (currentValue < targetValue) {
+          target.textContent = Math.floor(currentValue) + "+";
+          requestAnimationFrame(updateCounter);
+        } else {
+          target.textContent = targetValue + "+";
+        }
+      };
+
+      requestAnimationFrame(updateCounter);
+      counterObserver.unobserve(target); // Stop observing after animation starts
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
 /* REMINDER: What to Change */
 /* 1. Formspree: Ensure both forms (contact and hire-me) use your Formspree endpoint (set in index.html). Test both to confirm submission works. */
 /* 2. Carousel Timing: Adjust the 8000ms interval (line 60) if you want testimonials to rotate faster or slower. */
-/* 3. Smooth Scrolling: Verify smooth scrolling (lines 36-44) works for all nav links on desktop and mobile. */
-/* 4. Modal Handling: Test the 'Hire Me' modal (lines 88-103) opens and closes correctly from both hero and sticky CTA buttons. */
+/* 3. Counter Duration: Modify the 2000ms duration (line 184) if you prefer a faster or slower counter animation. */
+/* 4. Test: Verify the counters animate when scrolling to the 'About Me' section, and ensure no performance lag on mobile using Chrome DevTools. */
