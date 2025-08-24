@@ -78,27 +78,28 @@ a:hover { text-decoration: underline; }
 .lede { font-size: 1.1rem; color: var(--muted); max-width: 60ch; }
 .highlight { background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-.profile-card { position: relative; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; margin: 0 auto; }
+.profile-card { position: relative; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; margin: 0 auto; transition: transform 0.3s ease; }
+.profile-card:hover { transform: scale(1.05); }
 .profile-img { width: 100%; height: 100%; object-fit: cover; }
-.profile-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(30,127,79,0.3), rgba(18,160,98,0.3)); opacity: 0; transition: opacity 0.3s ease; }
+.profile-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(30,127,79,0.4), rgba(18,160,98,0.4)); opacity: 0; transition: opacity 0.3s ease; }
 .profile-card:hover .profile-overlay { opacity: 1; }
 
 /* ================================
    CARDS + GRID
 ================================ */
 .grid.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 24px rgba(0,0,0,.2); transition: transform .2s ease, box-shadow .2s ease; }
-.card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.3); }
+.card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 24px rgba(0,0,0,.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,.3); }
 .card h3 { margin-bottom: .4rem; color: var(--text); }
 .check { margin: 0; padding: 0; list-style: none; color: var(--muted); }
 .check li { padding-left: 1rem; position: relative; }
 .check li::before { content: "•"; position: absolute; left: .1rem; opacity: .6; }
 .portfolio-img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; }
 .filter-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
-.filter-btn { padding: 0.5rem 1rem; }
+.filter-btn { padding: 0.5rem 1rem; transition: background 0.2s ease, color 0.2s ease; }
 .filter-btn.active { background: var(--brand-2); color: #fff; }
-.portfolio-grid .card { transition: opacity 0.3s ease; }
-.portfolio-grid .card.hidden { opacity: 0; height: 0; margin: 0; padding: 0; overflow: hidden; }
+.portfolio-grid .card { transition: opacity 0.3s ease, transform 0.3s ease; }
+.portfolio-grid .card.hidden { opacity: 0; height: 0; margin: 0; padding: 0; overflow: hidden; transform: scale(0.8); }
 
 /* ================================
    TOOLS
@@ -106,21 +107,28 @@ a:hover { text-decoration: underline; }
 .strip { background: var(--surface); padding: 2rem 0; }
 .strip-title { text-align: center; margin-bottom: 1rem; }
 .tool-rail { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; padding: 0; list-style: none; }
-.tool-rail li { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; color: var(--text); transition: color 0.3s ease; }
-.tool-rail i { font-size: 2.5rem; transition: transform 0.2s ease; }
+.tool-rail li { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; color: var(--text); transition: color 0.3s ease, transform 0.3s ease; }
+.tool-rail li:hover { color: var(--brand-2); transform: translateY(-2px); }
+.tool-rail i { font-size: 2.5rem; transition: transform 0.3s ease; }
 .tool-rail li:hover i { transform: scale(1.1); }
-.tool-rail li:hover { color: var(--brand-2); }
+
+/* ================================
+   ABOUT
+================================ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.about-text p { max-width: 80ch; }
 
 /* ================================
    TESTIMONIALS CAROUSEL
 ================================ */
 .testimonial-carousel { position: relative; overflow: hidden; max-width: 800px; margin: 0 auto; }
 .testimonial-track { display: flex; transition: transform 0.6s ease-in-out; }
-.testimonial { flex: 0 0 100%; background: var(--card); border-left: 4px solid var(--brand); border-radius: 12px; padding: 1.5rem; margin: 0 0.5rem; box-shadow: 0 6px 18px rgba(0,0,0,0.18); color: var(--text); font-style: italic; }
+.testimonial { flex: 0 0 100%; background: var(--card); border-left: 4px solid var(--brand); border-radius: 12px; padding: 1.5rem; margin: 0 0.5rem; box-shadow: 0 6px 18px rgba(0,0,0,0.18); color: var(--text); font-style: italic; transition: transform 0.3s ease; }
+.testimonial:hover { transform: translateY(-4px); }
 .testimonial footer { margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); font-style: normal; }
 .carousel-nav { display: flex; justify-content: center; gap: 0.6rem; margin-top: 1rem; }
-.carousel-btn { width: 12px; height: 12px; border-radius: 50%; border: none; background: var(--muted); opacity: 0.5; cursor: pointer; transition: opacity 0.3s ease, transform 0.2s ease; }
-.carousel-btn:hover { opacity: 0.9; transform: scale(1.1); }
+.carousel-btn { width: 12px; height: 12px; border-radius: 50%; border: none; background: var(--muted); opacity: 0.5; cursor: pointer; transition: opacity 0.3s ease, transform 0.3s ease; }
+.carousel-btn:hover { opacity: 0.9; transform: scale(1.2); }
 .carousel-btn.active { background: var(--brand-2); opacity: 1; }
 .testimonial-carousel:hover .testimonial-track { animation-play-state: paused; }
 
@@ -129,7 +137,7 @@ a:hover { text-decoration: underline; }
 ================================ */
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); }
 .modal-content { background: var(--card); margin: 10% auto; padding: 20px; border-radius: 16px; width: 90%; max-width: 700px; color: var(--text); animation: fadeIn 0.4s ease; }
-.close { color: var(--muted); float: right; font-size: 24px; cursor: pointer; }
+.close { color: var(--muted); float: right; font-size: 24px; cursor: pointer; transition: color 0.2s ease; }
 .close:hover { color: var(--brand-2); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -139,8 +147,9 @@ a:hover { text-decoration: underline; }
 .form { max-width: 600px; margin: 0 auto; }
 .form-row { margin-bottom: 1rem; }
 .form-row label { display: block; margin-bottom: 0.5rem; color: var(--text); }
-.form-row input, .form-row textarea { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--surface); color: var(--text); }
-.form-row input:focus, .form-row textarea:focus { outline: none; border-color: var(--brand-2); box-shadow: 0 0 0 2px var(--ring); }
+.form-row input, .form-row textarea, .form-row select { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--surface); color: var(--text); }
+.form-row select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A8B2AC'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1.2rem; }
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus { outline: none; border-color: var(--brand-2); box-shadow: 0 0 0 2px var(--ring); }
 .form-message { margin-top: 0.5rem; font-size: 0.9rem; }
 .form-message.success { color: var(--brand-2); }
 .form-message.error { color: var(--highlight); }
@@ -148,11 +157,11 @@ a:hover { text-decoration: underline; }
 /* ================================
    MICRO-INTERACTIONS
 ================================ */
-.btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: .4rem; border-radius: 999px; padding: .6rem 1rem; border: 1px solid rgba(255,255,255,.16); text-decoration: none; color: var(--text); transition: background .2s ease; }
+.btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: .4rem; border-radius: 999px; padding: .6rem 1rem; border: 1px solid rgba(255,255,255,.16); text-decoration: none; color: var(--text); transition: background 0.2s ease, transform 0.2s ease; }
+.btn:hover { background: rgba(255,255,255,.08); transform: scale(1.03); }
 .btn::after { content: ""; position: absolute; top: 50%; left: 50%; width: 5px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 50%; transform: scale(0); opacity: 0; pointer-events: none; }
 .btn:active::after { transform: scale(18); opacity: 0; transition: transform 0.5s, opacity 1s; }
 .btn-primary { background: linear-gradient(135deg, var(--brand), var(--highlight)); border-color: transparent; color: #fff; }
-.btn:hover { background: rgba(255,255,255,.08); }
 .hero-copy h1 { display: inline-block; white-space: nowrap; overflow: hidden; border-right: 3px solid var(--brand-2); animation: typing 3.5s steps(40,end), blink .75s step-end infinite; max-width: 100%; }
 @keyframes typing { from { width: 0; } to { width: 100%; } }
 @keyframes blink { 50% { border-color: transparent; } }
@@ -168,7 +177,7 @@ a:hover { text-decoration: underline; }
   background: linear-gradient(135deg, var(--brand), var(--highlight));
   color: #fff; padding: .6rem 1.1rem; border-radius: 999px;
   box-shadow: 0 8px 20px rgba(0,0,0,.35);
-  transition: opacity .25s ease, transform .25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 .sticky-cta.hidden { opacity: 0; transform: translateY(16px); pointer-events: none; }
 .sticky-cta .btn,
@@ -184,7 +193,7 @@ a:hover { text-decoration: underline; }
   display: inline-grid; place-items: center;
   border: 0; cursor: pointer; background: rgba(255,255,255,.15);
   color: #fff; font-size: .9rem; line-height: 1;
-  transition: background .2s ease, transform .2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 .sticky-cta .close-cta:hover { background: rgba(255,255,255,.35); transform: scale(1.05); }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(18,160,98, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(18,160,98,0); } 100% { box-shadow: 0 0 0 0 rgba(18,160,98,0); } }
@@ -194,7 +203,7 @@ a:hover { text-decoration: underline; }
 ================================ */
 .site-footer { padding: 36px 0; border-top: 1px solid rgba(255,255,255,.08); background: linear-gradient(180deg, var(--surface), var(--bg)); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; align-items: start; }
-.footer-links { display: flex; gap: 1rem; }
+.footer-links { display: flex; gap: 1rem; align-items: center; }
 .footer-links i { font-size: 1.2rem; margin-left: 0.5rem; }
 .small { color: var(--muted); }
 
@@ -219,7 +228,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* REMINDER: What to Change */
-/* 1. Fonts: Ensure Montserrat font loads via the Google Fonts link in index.html. */
-/* 2. Colors: The --highlight color (#FF6F61) is used for CTAs and errors. Adjust in :root if you prefer a different accent color. */
-/* 3. Images: Verify portfolio images (social-media.jpg, email-dashboard.jpg, research-report.jpg) are styled correctly. Adjust .portfolio-img height if needed. */
-/* 4. Test Responsiveness: Check the profile card and grids on mobile devices to ensure proper scaling. */
+/* 1. Fonts: Ensure Montserrat and Playfair Display fonts load via Google Fonts link in index.html. */
+/* 2. Colors: Adjust --highlight (#FF6F61) in :root (line 10) if you prefer a different accent color for CTAs and errors. */
+/* 3. Animations: Test card hover scaling (lines 94, 129) and section animations (line 37) to ensure smooth performance. Adjust transition durations if needed. */
+/* 4. Form Styling: Verify the select dropdown arrow (line 159) displays correctly across browsers. */
