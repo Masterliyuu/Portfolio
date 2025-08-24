@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Leo Pañares, Virtual Assistant - Offering admin support, social media, customer support, and research services to help professionals save time.">
+  <meta name="description" content="Leo Pañares, Virtual Assistant - Expert in admin support, social media management, customer support, and research to save you time and boost efficiency.">
+  <meta name="keywords" content="virtual assistant, admin support, social media management, customer support, research, productivity">
+  <meta name="author" content="Leo Pañares">
   <title>Leo Pañares | Virtual Assistant Portfolio</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -23,7 +25,7 @@
         <img src="assets/favicon.png" alt="Leo Pañares Logo" class="brand-logo">
         Leo Pañares
       </a>
-      <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#about">About</a>
@@ -44,8 +46,9 @@
         <h1>Helping You <span class="highlight">Work Smarter</span></h1>
         <p class="lede">I help busy professionals save time and stay organized with tailored VA support.</p>
         <div class="cta-row">
-          <a href="#contact" class="btn btn-primary">Book a Call</a>
+          <button class="btn btn-primary hire-me-btn" data-modal="hire-me">Hire Me</button>
           <a href="Panare_Leo-Resume.pdf" class="btn btn-outline" download>Download Resume</a>
+          <a href="assets/Portfolio-Leo-Panares.pdf" class="btn btn-outline" download>View Portfolio PDF</a>
         </div>
       </div>
       <div class="profile-card">
@@ -54,6 +57,37 @@
       </div>
     </div>
   </section>
+
+  <!-- Hire Me Modal -->
+  <div id="hire-me" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Let’s Get Started</h2>
+      <p>Interested in working together? Fill out this quick form, and I’ll reach out within 24 hours!</p>
+      <form class="form hire-me-form" action="https://formspree.io/f/your-form-id" method="POST" id="hire-me-form">
+        <div class="form-row">
+          <label for="hire-name">Name</label>
+          <input type="text" id="hire-name" name="name" required aria-required="true">
+        </div>
+        <div class="form-row">
+          <label for="hire-email">Email</label>
+          <input type="email" id="hire-email" name="email" required aria-required="true">
+        </div>
+        <div class="form-row">
+          <label for="hire-service">Service Needed</label>
+          <select id="hire-service" name="service" required aria-required="true">
+            <option value="">Select a service</option>
+            <option value="admin">Admin Support</option>
+            <option value="social-media">Social Media</option>
+            <option value="customer-support">Customer Support</option>
+            <option value="research">Research</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+        <p class="form-message" style="display: none;"></p>
+      </form>
+    </div>
+  </div>
 
   <!-- Services -->
   <section id="services" class="section container">
@@ -117,10 +151,10 @@
       <h2>Portfolio</h2>
       <p>Real-world examples of how I’ve helped clients streamline and grow.</p>
       <div class="filter-buttons">
-        <button class="btn filter-btn active" data-filter="all">All</button>
-        <button class="btn filter-btn" data-filter="social-media">Social Media</button>
-        <button class="btn filter-btn" data-filter="admin">Admin</button>
-        <button class="btn filter-btn" data-filter="research">Research</button>
+        <button class="btn filter-btn active" data-filter="all" aria-label="Show all portfolio items">All</button>
+        <button class="btn filter-btn" data-filter="social-media" aria-label="Show social media portfolio items">Social Media</button>
+        <button class="btn filter-btn" data-filter="admin" aria-label="Show admin portfolio items">Admin</button>
+        <button class="btn filter-btn" data-filter="research" aria-label="Show research portfolio items">Research</button>
       </div>
     </header>
     <div class="grid cards portfolio-grid">
@@ -146,10 +180,13 @@
   <section id="about" class="section alt container">
     <header class="section-header">
       <h2>About Me</h2>
-      <p>A Virtual Assistant who is detail-oriented, tech-savvy, and ready to help you win back your time.</p>
+      <p>A detail-oriented, tech-savvy Virtual Assistant dedicated to helping you win back your time.</p>
     </header>
     <div class="about-grid">
-      <p>I specialize in helping small businesses, entrepreneurs, and busy executives stay organized and efficient. With years of experience across admin, customer service, and digital tools, I’m here to give you back hours in your day.</p>
+      <div class="about-text">
+        <p>I’m Leo Pañares, a Virtual Assistant passionate about empowering small businesses, entrepreneurs, and executives to focus on what matters most. With over 5 years of experience in admin support, social media management, customer service, and research, I deliver tailored solutions that save you hours each week. My goal is to streamline your workflow so you can achieve more without the stress.</p>
+        <p>Fun fact: I’m a productivity nerd who loves finding new tools and hacks to make work smarter, not harder!</p>
+      </div>
       <ul class="stats">
         <li class="stat"><span class="num">5+</span><span class="label">Years Experience</span></li>
         <li class="stat"><span class="num">30+</span><span class="label">Clients Helped</span></li>
@@ -223,8 +260,8 @@
       <h2>5 Ways a VA Saves 10 Hours/Week</h2>
       <p><strong>1. Email Management:</strong> I set up filters and priority inboxes to cut sorting time by 2-3 hours weekly.</p>
       <p><strong>2. Scheduling:</strong> Using tools like Calendly, I automate meeting bookings, saving 1-2 hours.</p>
-      <p><strong>3. Social Media:</strong> I schedule posts in batches, freeing up 2 hours for content creation.</p>
-      <p><strong>4. Data Entry:</strong> I streamline data tasks with templates, reducing manual work by 2 hours.</p>
+      <p><strong>3. Social Media:</strong> I schedule posts in batches with Hootsuite, freeing up 2 hours for content creation.</p>
+      <p><strong>4. Data Entry:</strong> I streamline data tasks with templates in Google Sheets, reducing manual work by 2 hours.</p>
       <p><strong>5. Research:</strong> I deliver concise reports, saving you 3+ hours of analysis.</p>
     </div>
   </div>
@@ -232,28 +269,28 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Boosting Productivity with Delegation</h2>
-      <p>Delegation is key to productivity. I help clients identify tasks to outsource, such as calendar management or customer inquiries, allowing them to focus on strategic goals. My approach ensures tasks are completed efficiently without micromanaging.</p>
+      <p>Delegation is key to unlocking productivity. I help clients identify tasks to outsource, like calendar management or customer inquiries, allowing them to focus on strategic goals. Using tools like Slack and Notion, I ensure seamless communication and task tracking, delivering results without micromanaging.</p>
     </div>
   </div>
   <div id="article3" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Top Tools Every VA Should Use</h2>
-      <p>Tools like Notion for project management, Canva for graphics, and Google Workspace for collaboration are essential for a VA. I leverage these to keep your projects organized and visually appealing, boosting efficiency.</p>
+      <p>Tools like Notion for project management, Canva for creating stunning graphics, and Google Workspace for collaboration are my go-to solutions. I use these to keep your projects organized, visually appealing, and on track, boosting efficiency and saving you time.</p>
     </div>
   </div>
   <div id="article4" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Why Small Businesses Need VAs</h2>
-      <p>Small businesses often lack resources for full-time staff. A VA like me handles admin, customer support, and research, allowing owners to scale without hiring. My services are cost-effective and tailored to your needs.</p>
+      <p>Small businesses often lack the budget for full-time staff. As a VA, I handle admin tasks, customer support, and research, allowing owners to scale affordably. My tailored services, powered by tools like WordPress and Slack, help you grow without the overhead.</p>
     </div>
   </div>
   <div id="article5" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Scaling Without Burnout</h2>
-      <p>Burnout is a risk when scaling. By outsourcing tasks like lead generation or content scheduling to me, you can maintain work-life balance while growing your business sustainably.</p>
+      <p>Scaling a business can lead to burnout if you try to do it all. By outsourcing tasks like lead generation or social media scheduling to me, you maintain work-life balance. I use proven systems to keep your operations running smoothly while you focus on growth.</p>
     </div>
   </div>
 
@@ -290,7 +327,7 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a href="https://linkedin.com/in/your-profile" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/masterliyuu/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
         <a href="https://twitter.com/your-profile" target="_blank" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
@@ -298,8 +335,15 @@
 
   <!-- Sticky CTA -->
   <div class="sticky-cta hidden">
-    <a href="#contact" class="btn">Book a Call</a>
-    <button class="close-cta">✖</button>
+    <button class="btn hire-me-btn" data-modal="hire-me">Hire Me</button>
+    <button class="close-cta" aria-label="Close sticky CTA">✖</button>
   </div>
 </body>
 </html>
+
+<!-- REMINDER: What to Change -->
+<!-- 1. Formspree ID: Replace 'your-form-id' in both forms (lines 61 and 198) with your actual Formspree endpoint (e.g., 'xexampleid'). Sign up at formspree.io to get it. -->
+<!-- 2. Social Media Links: Update LinkedIn and Twitter URLs (lines 216-217) with your actual profiles. -->
+<!-- 3. Content: Optionally replace placeholder testimonials (lines 137-145) and blog modal content (lines 155-189) with real client quotes or detailed articles if available. -->
+<!-- 4. Resume and Portfolio PDF: Ensure 'Panare_Leo-Resume.pdf' and 'Portfolio-Leo-Panares.pdf' are ready to upload to the 'assets' folder when you add images. -->
+<!-- 5. Test: After uploading to https://masterliyuu.github.io/Portfolio/#, verify forms submit, modals open, and filters work. Use Chrome DevTools to check responsiveness. -->
