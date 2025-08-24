@@ -1,57 +1,106 @@
-// ============ NAVBAR ELEVATION =============
-window.addEventListener("scroll", () => {
-  const header = document.querySelector(".site-header");
-  header.dataset.elevate = window.scrollY > 20 ? "true" : "false";
+/* ============================
+   Theme Toggle
+============================ */
+const themeToggle = document.getElementById("themeToggle");
+const root = document.documentElement;
+
+// check saved preference
+if (localStorage.getItem("theme") === "light") {
+  root.classList.add("light");
+  themeToggle.setAttribute("aria-pressed", "true");
+}
+
+// toggle on click
+themeToggle.addEventListener("click", () => {
+  root.classList.toggle("light");
+  const isLight = root.classList.contains("light");
+  themeToggle.setAttribute("aria-pressed", isLight);
+  localStorage.setItem("theme", isLight ? "light" : "dark");
 });
 
-// ============ MOBILE NAV TOGGLE ============
+/* ============================
+   Header Elevation on Scroll
+============================ */
+const header = document.querySelector(".site-header");
+window.addEventListener("scroll", () => {
+  header.dataset.elevate = window.scrollY > 20;
+});
+
+/* ============================
+   Mobile Navigation
+============================ */
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
-if(menuToggle){
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
-}
 
-// ============ SCROLL REVEAL ============
-const revealSections = document.querySelectorAll(".section");
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add("visible")}
-  });
-},{threshold:.1});
-revealSections.forEach(sec=>observer.observe(sec));
+menuToggle.addEventListener("click", () => {
+  const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", !expanded);
+  navLinks.style.display = expanded ? "none" : "flex";
+});
 
-// ============ TESTIMONIAL CAROUSEL ============
+/* ============================
+   Testimonials Carousel
+============================ */
 const track = document.querySelector(".testimonial-track");
-const slides = document.querySelectorAll(".testimonial");
-const navBtns = document.querySelectorAll(".carousel-btn");
-let index=0;
-function goToSlide(i){
-  track.style.transform = `translateX(-${i*100}%)`;
-  navBtns.forEach(btn=>btn.classList.remove("active"));
-  navBtns[i].classList.add("active");
-}
-navBtns.forEach((btn,i)=>btn.addEventListener("click",()=>{index=i;goToSlide(index)}));
-setInterval(()=>{index=(index+1)%slides.length;goToSlide(index)},5000);
+const testimonials = document.querySelectorAll(".testimonial");
+const buttons = document.querySelectorAll(".carousel-btn");
 
-// ============ BLOG MODALS ============
-document.querySelectorAll(".read-more").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const modal=document.querySelector(btn.dataset.target);
-    if(modal) modal.style.display="block";
+let index = 0;
+
+function showTestimonial(i) {
+  track.style.transform = `translateX(-${i * 100}%)`;
+  buttons.forEach((btn, bIndex) =>
+    btn.classList.toggle("active", bIndex === i)
+  );
+}
+
+buttons.forEach((btn, bIndex) => {
+  btn.addEventListener("click", () => {
+    index = bIndex;
+    showTestimonial(index);
   });
 });
-document.querySelectorAll(".modal .close").forEach(btn=>{
-  btn.addEventListener("click",()=>btn.closest(".modal").style.display="none");
-});
-window.addEventListener("click",(e)=>{
-  if(e.target.classList.contains("modal")) e.target.style.display="none";
+
+// auto slide
+setInterval(() => {
+  index = (index + 1) % testimonials.length;
+  showTestimonial(index);
+}, 6000);
+
+/* ============================
+   Blog Modals
+============================ */
+const readMoreButtons = document.querySelectorAll(".read-more");
+const modals = document.querySelectorAll(".modal");
+const closeButtons = document.querySelectorAll(".close");
+
+readMoreButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.article;
+    document.getElementById(`article${id}`).style.display = "block";
+  });
 });
 
-// ============ STICKY CTA ============
-const cta=document.querySelector(".sticky-cta");
-const closeBtn=document.querySelector(".close-cta");
-if(closeBtn){
-  closeBtn.addEventListener("click",()=>cta.classList.add("hidden"));
-}
+closeButtons.forEach((close) => {
+  close.addEventListener("click", () => {
+    close.closest(".modal").style.display = "none";
+  });
+});
+
+window.addEventListener("click", (e) => {
+  modals.forEach((modal) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
+
+/* ============================
+   Sticky CTA
+============================ */
+const stickyCTA = document.querySelector(".sticky-cta");
+const closeCTA = document.querySelector(".close-cta");
+
+closeCTA.addEventListener("click", () => {
+  stickyCTA.classList.add("hidden");
+});
