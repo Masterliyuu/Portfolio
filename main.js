@@ -39,6 +39,19 @@ menuToggle.addEventListener("click", () => {
 });
 
 /* ============================
+   Smooth Scrolling
+============================ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = document.querySelector(anchor.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
+/* ============================
    Testimonials Carousel
 ============================ */
 const track = document.querySelector(".testimonial-track");
@@ -75,16 +88,16 @@ testimonialCarousel.addEventListener("mouseleave", startCarousel);
 startCarousel();
 
 /* ============================
-   Blog Modals
+   Blog and Hire Me Modals
 ============================ */
-const readMoreButtons = document.querySelectorAll(".read-more");
+const modalButtons = document.querySelectorAll("[data-modal]");
 const modals = document.querySelectorAll(".modal");
 const closeButtons = document.querySelectorAll(".close");
 
-readMoreButtons.forEach((btn) => {
+modalButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    const id = btn.dataset.article;
-    const modal = document.getElementById(`article${id}`);
+    const modalId = btn.dataset.modal;
+    const modal = document.getElementById(modalId);
     if (modal) modal.style.display = "block";
   });
 });
@@ -135,34 +148,35 @@ closeCTA.addEventListener("click", () => {
 /* ============================
    Form Submission
 ============================ */
-const form = document.getElementById("contact-form");
-const formMessage = document.querySelector(".form-message");
+const forms = document.querySelectorAll(".form");
+forms.forEach(form => {
+  const formMessage = form.querySelector(".form-message");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formMessage.style.display = "none";
+    formMessage.classList.remove("success", "error");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  formMessage.style.display = "none";
-  formMessage.classList.remove("success", "error");
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      });
 
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      headers: { "Accept": "application/json" }
-    });
-
-    if (response.ok) {
-      form.reset();
+      if (response.ok) {
+        form.reset();
+        formMessage.style.display = "block";
+        formMessage.classList.add("success");
+        formMessage.textContent = "Message sent successfully! I'll get back to you soon.";
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
       formMessage.style.display = "block";
-      formMessage.classList.add("success");
-      formMessage.textContent = "Message sent successfully! I'll get back to you soon.";
-    } else {
-      throw new Error("Form submission failed");
+      formMessage.classList.add("error");
+      formMessage.textContent = "Error sending message. Please try again or email me directly.";
     }
-  } catch (error) {
-    formMessage.style.display = "block";
-    formMessage.classList.add("error");
-    formMessage.textContent = "Error sending message. Please try again or email me directly.";
-  }
+  });
 });
 
 /* ============================
@@ -177,6 +191,7 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => observer.observe(section));
 
 /* REMINDER: What to Change */
-/* 1. Formspree: Ensure the form action URL matches your Formspree endpoint (set in index.html). */
-/* 2. Carousel Timing: Adjust the 8000ms interval (line 47) if you want the testimonials to rotate faster or slower. */
-/* 3. Test Filters: Verify the portfolio filter buttons work correctly with your portfolio items. Add more cards if needed by updating the portfolio section in index.html. */
+/* 1. Formspree: Ensure both forms (contact and hire-me) use your Formspree endpoint (set in index.html). Test both to confirm submission works. */
+/* 2. Carousel Timing: Adjust the 8000ms interval (line 60) if you want testimonials to rotate faster or slower. */
+/* 3. Smooth Scrolling: Verify smooth scrolling (lines 36-44) works for all nav links on desktop and mobile. */
+/* 4. Modal Handling: Test the 'Hire Me' modal (lines 88-103) opens and closes correctly from both hero and sticky CTA buttons. */
