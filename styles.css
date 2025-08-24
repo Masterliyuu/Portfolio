@@ -156,7 +156,7 @@ a:hover { text-decoration: underline; }
 .form-row input, .form-row textarea, .form-row select { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--surface); color: var(--text); }
 .form-row select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A8B2AC'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1.2rem; }
 .form-row input:focus, .form-row textarea:focus, .form-row select:focus { outline: none; border-color: var(--brand-2); box-shadow: 0 0 0 2px var(--ring); }
-.form-message { margin-top: 0.5rem; font-size: 0.9rem; }
+.form-message { margin-top: 0.5rem; font-size: 0.9rem; color: var(--text); }
 .form-message.success { color: var(--brand-2); }
 .form-message.error { color: var(--highlight); }
 
