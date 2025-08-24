@@ -57,7 +57,7 @@ function startCarousel() {
   carouselInterval = setInterval(() => {
     index = (index + 1) % testimonials.length;
     showTestimonial(index);
-  }, 8000); // Slower interval for readability
+  }, 8000);
 }
 
 buttons.forEach((btn, bIndex) => {
@@ -102,6 +102,23 @@ window.addEventListener("click", (e) => {
 });
 
 /* ============================
+   Portfolio Filter
+============================ */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const portfolioCards = document.querySelectorAll(".portfolio-grid .card");
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    const filter = button.dataset.filter;
+    portfolioCards.forEach(card => {
+      card.classList.toggle("hidden", filter !== "all" && card.dataset.category !== filter);
+    });
+  });
+});
+
+/* ============================
    Sticky CTA
 ============================ */
 const stickyCTA = document.querySelector(".sticky-cta");
@@ -109,7 +126,7 @@ const closeCTA = document.querySelector(".close-cta");
 
 setTimeout(() => {
   stickyCTA.classList.remove("hidden");
-}, 3000); // Delay CTA appearance
+}, 3000);
 
 closeCTA.addEventListener("click", () => {
   stickyCTA.classList.add("hidden");
@@ -118,12 +135,13 @@ closeCTA.addEventListener("click", () => {
 /* ============================
    Form Submission
 ============================ */
-const form = document.querySelector(".form");
-const formError = document.querySelector(".form-error");
+const form = document.getElementById("contact-form");
+const formMessage = document.querySelector(".form-message");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  formError.style.display = "none";
+  formMessage.style.display = "none";
+  formMessage.classList.remove("success", "error");
 
   try {
     const response = await fetch(form.action, {
@@ -134,14 +152,31 @@ form.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       form.reset();
-      formError.style.display = "block";
-      formError.style.color = "green";
-      formError.textContent = "Message sent successfully!";
+      formMessage.style.display = "block";
+      formMessage.classList.add("success");
+      formMessage.textContent = "Message sent successfully! I'll get back to you soon.";
     } else {
       throw new Error("Form submission failed");
     }
   } catch (error) {
-    formError.style.display = "block";
-    formError.textContent = "Error sending message. Please try again.";
+    formMessage.style.display = "block";
+    formMessage.classList.add("error");
+    formMessage.textContent = "Error sending message. Please try again or email me directly.";
   }
 });
+
+/* ============================
+   Section Animations
+============================ */
+const sections = document.querySelectorAll(".section");
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("visible");
+  });
+}, { threshold: 0.1 });
+sections.forEach(section => observer.observe(section));
+
+/* REMINDER: What to Change */
+/* 1. Formspree: Ensure the form action URL matches your Formspree endpoint (set in index.html). */
+/* 2. Carousel Timing: Adjust the 8000ms interval (line 47) if you want the testimonials to rotate faster or slower. */
+/* 3. Test Filters: Verify the portfolio filter buttons work correctly with your portfolio items. Add more cards if needed by updating the portfolio section in index.html. */
