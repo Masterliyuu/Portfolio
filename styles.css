@@ -5,9 +5,10 @@
   --bg: #0B0E0C;
   --surface: #101410;
   --text: #F3F6F4;
-  --muted: #C8D2CC;
+  --muted: #A8B2AC;
   --brand: #1E7F4F;
   --brand-2: #12A062;
+  --highlight: #FF6F61;
   --ring: #66d19e;
   --card: #121712;
 }
@@ -17,7 +18,7 @@
   --bg: #FFFFFF;
   --surface: #F6F8F7;
   --text: #0B0E0C;
-  --muted: #5c6a62;
+  --muted: #4A5A52;
   --card: #FFFFFF;
 }
 
@@ -33,15 +34,17 @@ body {
   background: linear-gradient(180deg, var(--bg) 0%, #0E120E 60%);
   line-height: 1.6;
 }
-h1, h2, h3 { line-height: 1.2; margin: 0 0 .5rem; color: var(--text); }
-h1 { font-size: clamp(2rem, 3vw + 1rem, 3.2rem); font-family: "Playfair Display", serif; }
+h1, h2 { line-height: 1.2; margin: 0 0 .5rem; color: var(--text); font-family: "Playfair Display", serif; }
+h3, .btn { font-family: "Montserrat", sans-serif; font-weight: 600; }
+h1 { font-size: clamp(2rem, 3vw + 1rem, 3.2rem); }
 h2 { font-size: clamp(1.6rem, 1.6vw + 1rem, 2.2rem); }
 h3 { font-size: 1.2rem; }
 p { margin: .5rem 0 1rem; color: var(--text); }
 a { color: var(--brand); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .container { width: min(1100px, 92%); margin-inline: auto; }
-.section { padding: 64px 0; }
+.section { padding: 64px 0; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
 .section.alt { background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); }
 .section-header { max-width: 760px; margin: 0 auto 2rem; text-align: center; }
 .section-header p { color: var(--muted); }
@@ -59,7 +62,7 @@ a:hover { text-decoration: underline; }
 .site-header[data-elevate="true"] { box-shadow: 0 8px 20px rgba(0,0,0,.25); }
 .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 14px 0; }
 .brand { display: flex; align-items: center; gap: .5rem; color: var(--text); text-decoration: none; font-weight: 700; }
-.brand-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; }
+.brand-logo { width: 32px; height: 32px; border-radius: 8px; }
 .nav-links { display: flex; align-items: center; gap: 1rem; flex-wrap: nowrap; white-space: nowrap; }
 .nav-links a { color: var(--text); text-decoration: none; opacity: .9; }
 .nav-links a:hover { opacity: 1; }
@@ -75,8 +78,10 @@ a:hover { text-decoration: underline; }
 .lede { font-size: 1.1rem; color: var(--muted); max-width: 60ch; }
 .highlight { background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-.profile-card { width: 100%; aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; }
-.profile-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-card { position: relative; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; margin: 0 auto; }
+.profile-img { width: 100%; height: 100%; object-fit: cover; }
+.profile-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(30,127,79,0.3), rgba(18,160,98,0.3)); opacity: 0; transition: opacity 0.3s ease; }
+.profile-card:hover .profile-overlay { opacity: 1; }
 
 /* ================================
    CARDS + GRID
@@ -88,6 +93,12 @@ a:hover { text-decoration: underline; }
 .check { margin: 0; padding: 0; list-style: none; color: var(--muted); }
 .check li { padding-left: 1rem; position: relative; }
 .check li::before { content: "•"; position: absolute; left: .1rem; opacity: .6; }
+.portfolio-img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; }
+.filter-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+.filter-btn { padding: 0.5rem 1rem; }
+.filter-btn.active { background: var(--brand-2); color: #fff; }
+.portfolio-grid .card { transition: opacity 0.3s ease; }
+.portfolio-grid .card.hidden { opacity: 0; height: 0; margin: 0; padding: 0; overflow: hidden; }
 
 /* ================================
    TOOLS
@@ -130,7 +141,9 @@ a:hover { text-decoration: underline; }
 .form-row label { display: block; margin-bottom: 0.5rem; color: var(--text); }
 .form-row input, .form-row textarea { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--surface); color: var(--text); }
 .form-row input:focus, .form-row textarea:focus { outline: none; border-color: var(--brand-2); box-shadow: 0 0 0 2px var(--ring); }
-.form-error { margin-top: 0.5rem; }
+.form-message { margin-top: 0.5rem; font-size: 0.9rem; }
+.form-message.success { color: var(--brand-2); }
+.form-message.error { color: var(--highlight); }
 
 /* ================================
    MICRO-INTERACTIONS
@@ -138,7 +151,7 @@ a:hover { text-decoration: underline; }
 .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: .4rem; border-radius: 999px; padding: .6rem 1rem; border: 1px solid rgba(255,255,255,.16); text-decoration: none; color: var(--text); transition: background .2s ease; }
 .btn::after { content: ""; position: absolute; top: 50%; left: 50%; width: 5px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 50%; transform: scale(0); opacity: 0; pointer-events: none; }
 .btn:active::after { transform: scale(18); opacity: 0; transition: transform 0.5s, opacity 1s; }
-.btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border-color: transparent; color: #fff; }
+.btn-primary { background: linear-gradient(135deg, var(--brand), var(--highlight)); border-color: transparent; color: #fff; }
 .btn:hover { background: rgba(255,255,255,.08); }
 .hero-copy h1 { display: inline-block; white-space: nowrap; overflow: hidden; border-right: 3px solid var(--brand-2); animation: typing 3.5s steps(40,end), blink .75s step-end infinite; max-width: 100%; }
 @keyframes typing { from { width: 0; } to { width: 100%; } }
@@ -152,7 +165,7 @@ a:hover { text-decoration: underline; }
   inset: auto 20px calc(20px + env(safe-area-inset-bottom)) auto;
   z-index: 9999;
   display: flex; align-items: center; gap: .5rem;
-  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  background: linear-gradient(135deg, var(--brand), var(--highlight));
   color: #fff; padding: .6rem 1.1rem; border-radius: 999px;
   box-shadow: 0 8px 20px rgba(0,0,0,.35);
   transition: opacity .25s ease, transform .25s ease;
@@ -182,7 +195,7 @@ a:hover { text-decoration: underline; }
 .site-footer { padding: 36px 0; border-top: 1px solid rgba(255,255,255,.08); background: linear-gradient(180deg, var(--surface), var(--bg)); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; align-items: start; }
 .footer-links { display: flex; gap: 1rem; }
-.footer-links a { color: var(--muted); }
+.footer-links i { font-size: 1.2rem; margin-left: 0.5rem; }
 .small { color: var(--muted); }
 
 /* ================================
@@ -192,7 +205,7 @@ a:hover { text-decoration: underline; }
   .grid.cards { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; }
   .hero-grid { grid-template-columns: 1fr; }
-  .profile-card { max-width: 300px; margin: 0 auto; }
+  .profile-card { width: 200px; height: 200px; }
 }
 @media (max-width: 768px) {
   .grid.cards { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
@@ -204,3 +217,9 @@ a:hover { text-decoration: underline; }
   .nav-links.active { display: flex; }
   .menu-toggle { display: inline-block; }
 }
+
+/* REMINDER: What to Change */
+/* 1. Fonts: Ensure Montserrat font loads via the Google Fonts link in index.html. */
+/* 2. Colors: The --highlight color (#FF6F61) is used for CTAs and errors. Adjust in :root if you prefer a different accent color. */
+/* 3. Images: Verify portfolio images (social-media.jpg, email-dashboard.jpg, research-report.jpg) are styled correctly. Adjust .portfolio-img height if needed. */
+/* 4. Test Responsiveness: Check the profile card and grids on mobile devices to ensure proper scaling. */
