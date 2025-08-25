@@ -123,22 +123,30 @@ window.addEventListener("click", (e) => {
   });
 });
 
-/* ============================
-   Portfolio Filter
-============================ */
+// Portfolio Filtering
 const filterButtons = document.querySelectorAll(".filter-btn");
-const portfolioItems = document.querySelectorAll(".carousel-item");
+const portfolioCards = document.querySelectorAll(".portfolio-card");
 
-filterButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
-    const filter = button.dataset.filter;
-    portfolioItems.forEach(item => {
-      item.classList.toggle("hidden", filter !== "all" && item.dataset.category !== filter);
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // remove active state from all
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-filter");
+
+    portfolioCards.forEach(card => {
+      if (filter === "all" || card.dataset.category === filter) {
+        card.style.display = "block";
+        setTimeout(() => card.style.opacity = "1", 100);
+      } else {
+        card.style.opacity = "0";
+        setTimeout(() => card.style.display = "none", 300);
+      }
     });
   });
 });
+
 
 /* ============================
    Sticky CTA
