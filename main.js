@@ -54,29 +54,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* ============================
    Testimonials Carousel
 ============================ */
-const track = document.querySelector(".testimonial-track");
+const testimonialTrack = document.querySelector(".testimonial-track");
 const testimonials = document.querySelectorAll(".testimonial");
 const buttons = document.querySelectorAll(".carousel-btn");
 
-let index = 0;
+let testimonialIndex = 0;
 let carouselInterval;
 
 function showTestimonial(i) {
-  track.style.transform = `translateX(-${i * 100}%)`;
+  testimonialTrack.style.transform = `translateX(-${i * 100}%)`;
   buttons.forEach((btn, bIndex) => btn.classList.toggle("active", bIndex === i));
 }
 
 function startCarousel() {
   carouselInterval = setInterval(() => {
-    index = (index + 1) % testimonials.length;
-    showTestimonial(index);
+    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+    showTestimonial(testimonialIndex);
   }, 8000);
 }
 
 buttons.forEach((btn, bIndex) => {
   btn.addEventListener("click", () => {
-    index = bIndex;
-    showTestimonial(index);
+    testimonialIndex = bIndex;
+    showTestimonial(testimonialIndex);
     clearInterval(carouselInterval);
     startCarousel();
   });
@@ -127,15 +127,15 @@ window.addEventListener("click", (e) => {
    Portfolio Filter
 ============================ */
 const filterButtons = document.querySelectorAll(".filter-btn");
-const portfolioCards = document.querySelectorAll(".portfolio-grid .card");
+const portfolioItems = document.querySelectorAll(".carousel-item");
 
 filterButtons.forEach(button => {
   button.addEventListener("click", () => {
     filterButtons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
     const filter = button.dataset.filter;
-    portfolioCards.forEach(card => {
-      card.classList.toggle("hidden", filter !== "all" && card.dataset.category !== filter);
+    portfolioItems.forEach(item => {
+      item.classList.toggle("hidden", filter !== "all" && item.dataset.category !== filter);
     });
   });
 });
@@ -233,29 +233,23 @@ counters.forEach(counter => counterObserver.observe(counter));
 /* ============================
    Portfolio Carousel
 ============================ */
-const track = document.querySelector(".carousel-track");
+const portfolioTrack = document.querySelector(".carousel-track");
 const items = document.querySelectorAll(".carousel-item");
 const prevButton = document.querySelector(".carousel-prev");
 const nextButton = document.querySelector(".carousel-next");
 
-let index = 0;
+let portfolioIndex = 0;
 
 function updateCarousel() {
-  track.style.transform = `translateX(-${index * 100}%)`;
+  portfolioTrack.style.transform = `translateX(-${portfolioIndex * 100}%)`;
 }
 
 prevButton.addEventListener("click", () => {
-  index = (index > 0) ? index - 1 : items.length - 1;
+  portfolioIndex = (portfolioIndex > 0) ? portfolioIndex - 1 : items.length - 1;
   updateCarousel();
 });
 
 nextButton.addEventListener("click", () => {
-  index = (index < items.length - 1) ? index + 1 : 0;
+  portfolioIndex = (portfolioIndex < items.length - 1) ? portfolioIndex + 1 : 0;
   updateCarousel();
 });
-
-/* REMINDER: What to Change */
-/* 1. Formspree: Ensure both forms (contact and hire-me) use your Formspree endpoint (set in index.html). Test both to confirm submission works. */
-/* 2. Carousel Timing: Adjust the 8000ms interval (line 60) if you want testimonials to rotate faster or slower. */
-/* 3. Counter Duration: Modify the 2000ms duration (line 184) if you prefer a faster or slower counter animation. */
-/* 4. Test: Verify the counters animate when scrolling to the 'About Me' section, and ensure no performance lag on mobile using Chrome DevTools. */
