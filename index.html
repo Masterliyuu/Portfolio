@@ -150,87 +150,128 @@
     </div>
   </section>
 
-  <!-- Portfolio -->
-  <section id="work" class="section container">
-    <header class="section-header">
-      <h2>Portfolio</h2>
-      <p>Real-world examples of my design work, admin support, social media, research, and customer success.</p>
-      <div class="filter-buttons">
-        <button class="btn filter-btn active" data-filter="all" aria-label="Show all portfolio items">All</button>
-        <button class="btn filter-btn" data-filter="social-media" aria-label="Show social media portfolio items">Social Media</button>
-        <button class="btn filter-btn" data-filter="admin" aria-label="Show admin portfolio items">Admin</button>
-        <button class="btn filter-btn" data-filter="research" aria-label="Show research portfolio items">Research</button>
-        <button class="btn filter-btn" data-filter="design" aria-label="Show design portfolio items">Design</button>
-        <button class="btn filter-btn" data-filter="customer-support" aria-label="Show customer support portfolio items">Customer Support</button>
-      </div>
-    </header>
-    <div class="portfolio-carousel">
-      <div class="carousel-track">
-        <div class="carousel-item" data-category="design">
-          <img src="assets/Before-Report.png" alt="Social Media Graphic Design" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Design Sample 1</div>
-          <h3>Social Media Graphic</h3>
-          <p>Created a vibrant Instagram post series for a retailer, boosting engagement by 25%.</p>
-        </div>
-        <div class="carousel-item" data-category="design">
-          <img src="assets/After-Report.png" alt="Custom Logo" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Design Sample 2</div>
-          <h3>Custom Logo</h3>
-          <p>Designed a unique logo for a startup, enhancing their brand identity.</p>
-        </div>
-        <div class="carousel-item" data-category="design">
-          <img src="assets/Before-Report.png" alt="Promotional Flyer" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Design Sample 3</div>
-          <h3>Promotional Flyer</h3>
-          <p>Developed a professional flyer for a client’s event, increasing attendance by 30%.</p>
-        </div>
-        <div class="carousel-item" data-category="admin">
-          <img src="assets/Before-Report.png" alt="Email Management" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Admin Sample 1</div>
-          <h3>Email Management</h3>
-          <p>Organized inbox for a busy executive, reducing response time by 50%.</p>
-        </div>
-        <div class="carousel-item" data-category="admin">
-          <img src="assets/After-Report.png" alt="Calendar Scheduling" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Admin Sample 2</div>
-          <h3>Calendar Scheduling</h3>
-          <p>Streamlined a CEO’s calendar, saving 10 hours weekly through efficient booking.</p>
-        </div>
-        <div class="carousel-item" data-category="social-media">
-          <img src="assets/Before-Report.png" alt="Social Media Campaign" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Social Sample 1</div>
-          <h3>Social Media Campaign</h3>
-          <p>Managed a 30-post campaign for a small business, increasing followers by 20%.</p>
-        </div>
-        <div class="carousel-item" data-category="research">
-          <img src="assets/Before-Report.png" alt="Market Research" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Research Sample 1</div>
-          <h3>Market Research</h3>
-          <p>Conducted competitor analysis for a startup, identifying key opportunities.</p>
-        </div>
-        <div class="carousel-item" data-category="research">
-          <img src="assets/After-Report.png" alt="Lead Generation" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Research Sample 2</div>
-          <h3>Lead Generation</h3>
-          <p>Generated 50+ qualified leads for a client using targeted research strategies.</p>
-        </div>
-        <div class="carousel-item" data-category="customer-support">
-          <img src="assets/Before-Report.png" alt="CRM Optimization" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Support Sample 1</div>
-          <h3>CRM Optimization</h3>
-          <p>Improved a client’s CRM setup, reducing query resolution time by 40%.</p>
-        </div>
-        <div class="carousel-item" data-category="customer-support">
-          <img src="assets/After-Report.png" alt="Chat Support System" class="portfolio-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="image-placeholder" style="display: none; text-align: center; color: var(--muted);">Support Sample 2</div>
-          <h3>Chat Support System</h3>
-          <p>Implemented a live chat system, boosting customer satisfaction by 35%.</p>
-        </div>
-      </div>
-      <button class="carousel-prev" aria-label="Previous project"><i class="fas fa-chevron-left"></i></button>
-      <button class="carousel-next" aria-label="Next project"><i class="fas fa-chevron-right"></i></button>
+ <!-- Portfolio -->
+<section id="work" class="section container">
+  <header class="section-header">
+    <h2>Portfolio</h2>
+    <p>Real-world examples of my design work, admin support, social media, research, and customer success.</p>
+    <div class="filter-buttons">
+      <button class="btn filter-btn active" data-filter="all">All</button>
+      <button class="btn filter-btn" data-filter="social-media">Social Media</button>
+      <button class="btn filter-btn" data-filter="admin">Admin</button>
+      <button class="btn filter-btn" data-filter="research">Research</button>
+      <button class="btn filter-btn" data-filter="design">Design</button>
+      <button class="btn filter-btn" data-filter="customer-support">Customer Support</button>
     </div>
-  </section>
+  </header>
+
+  <!-- Grid Portfolio -->
+  <div class="portfolio-grid">
+
+    <!-- Portfolio Item -->
+    <div class="portfolio-card" data-category="design">
+      <img src="assets/Before-Report.png" alt="Social Media Graphic Design"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Design Sample 1</div>
+      <div class="overlay">
+        <h3>Social Media Graphic</h3>
+        <p>Created a vibrant Instagram post series for a retailer, boosting engagement by 25%.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="design">
+      <img src="assets/After-Report.png" alt="Custom Logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Design Sample 2</div>
+      <div class="overlay">
+        <h3>Custom Logo</h3>
+        <p>Designed a unique logo for a startup, enhancing their brand identity.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="design">
+      <img src="assets/Before-Report.png" alt="Promotional Flyer"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Design Sample 3</div>
+      <div class="overlay">
+        <h3>Promotional Flyer</h3>
+        <p>Developed a professional flyer for a client’s event, increasing attendance by 30%.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="admin">
+      <img src="assets/Before-Report.png" alt="Email Management"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Admin Sample 1</div>
+      <div class="overlay">
+        <h3>Email Management</h3>
+        <p>Organized inbox for a busy executive, reducing response time by 50%.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="admin">
+      <img src="assets/After-Report.png" alt="Calendar Scheduling"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Admin Sample 2</div>
+      <div class="overlay">
+        <h3>Calendar Scheduling</h3>
+        <p>Streamlined a CEO’s calendar, saving 10 hours weekly through efficient booking.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="social-media">
+      <img src="assets/Before-Report.png" alt="Social Media Campaign"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Social Sample 1</div>
+      <div class="overlay">
+        <h3>Social Media Campaign</h3>
+        <p>Managed a 30-post campaign for a small business, increasing followers by 20%.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="research">
+      <img src="assets/Before-Report.png" alt="Market Research"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Research Sample 1</div>
+      <div class="overlay">
+        <h3>Market Research</h3>
+        <p>Conducted competitor analysis for a startup, identifying key opportunities.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="research">
+      <img src="assets/After-Report.png" alt="Lead Generation"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Research Sample 2</div>
+      <div class="overlay">
+        <h3>Lead Generation</h3>
+        <p>Generated 50+ qualified leads for a client using targeted research strategies.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="customer-support">
+      <img src="assets/Before-Report.png" alt="CRM Optimization"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Support Sample 1</div>
+      <div class="overlay">
+        <h3>CRM Optimization</h3>
+        <p>Improved a client’s CRM setup, reducing query resolution time by 40%.</p>
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-category="customer-support">
+      <img src="assets/After-Report.png" alt="Chat Support System"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="image-placeholder" style="display: none;">Support Sample 2</div>
+      <div class="overlay">
+        <h3>Chat Support System</h3>
+        <p>Implemented a live chat system, boosting customer satisfaction by 35%.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
   <!-- About -->
   <section id="about" class="section alt container">
