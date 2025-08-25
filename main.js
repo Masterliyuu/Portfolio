@@ -230,6 +230,30 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 counters.forEach(counter => counterObserver.observe(counter));
 
+/* ============================
+   Portfolio Carousel
+============================ */
+const track = document.querySelector(".carousel-track");
+const items = document.querySelectorAll(".carousel-item");
+const prevButton = document.querySelector(".carousel-prev");
+const nextButton = document.querySelector(".carousel-next");
+
+let index = 0;
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+prevButton.addEventListener("click", () => {
+  index = (index > 0) ? index - 1 : items.length - 1;
+  updateCarousel();
+});
+
+nextButton.addEventListener("click", () => {
+  index = (index < items.length - 1) ? index + 1 : 0;
+  updateCarousel();
+});
+
 /* REMINDER: What to Change */
 /* 1. Formspree: Ensure both forms (contact and hire-me) use your Formspree endpoint (set in index.html). Test both to confirm submission works. */
 /* 2. Carousel Timing: Adjust the 8000ms interval (line 60) if you want testimonials to rotate faster or slower. */
